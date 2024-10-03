@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!DOCTYPE html>
+    <html lang="fr">
+    <head>
+        <title>Liste des CVs</title>
+    </head>
+    <body>
+    <h1>Liste des CVs</h1>
+    <a href="{{ path('cv_new') }}">Ajouter un nouveau CV</a>
+    <ul>
+        {% for cv in cvs %}
+            <li>{{ cv.title }}: {{ cv.description }}</li>
+        {% endfor %}
+    </ul>
+    </body>
+    </html>
+
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+

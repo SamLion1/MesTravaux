@@ -1,3 +1,7 @@
 controllers:
     resource: ../src/Controller/
     type: attribute
+# config/routes.yaml
+app:
+    path: /
+    controller: App\Controller\HomeController::index

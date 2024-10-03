@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Liste des Lettres de Motivation</title>
+</head>
+<body>
+<h1>Liste des Lettres de Motivation</h1>
+<a href="{{ path('letter_new') }}">Ajouter une nouvelle Lettre de Motivation</a>
+<ul>
+    {% for letter in letters %}
+        <li>{{ letter.title }}: {{ letter.content }}</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+

@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!DOCTYPE html>
+    <html lang="fr">
+    <head>
+        <title>Liste des Projets</title>
+    </head>
+    <body>
+    <h1>Liste des Projets</h1>
+    <a href="{{ path('project_new') }}">Ajouter un nouveau projet</a>
+    <ul>
+        {% for project in projects %}
+            <li>
+                <h2>{{ project.title }}</h2>
+                <p>{{ project.description }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+    </body>
+    </html>
+
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+
