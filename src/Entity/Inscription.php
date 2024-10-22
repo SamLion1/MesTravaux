@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-class MonEntite
-{
+class Inscription {
 
 }
