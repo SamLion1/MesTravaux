@@ -1,7 +1,8 @@
 controllers:
     resource: ../src/Controller/
     type: attribute
-# config/routes.yaml
-app:
+
+# Route spécifique pour /home
+app_home:
     path: /home
     controller: App\Controller\HomeController::index
