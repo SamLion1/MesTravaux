@@ -1,37 +1,38 @@
-<?php
-
 namespace App\Controller;
 
-use App\Form\Inscription;
+use App\Form\InscriptionType; // Correction : Assurez-vous d'importer la bonne classe de formulaire
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request; // Ajoute cette ligne
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
-    #[Route('/home', name: 'app_home')]
-    public function form(Request $request): Response
-    {
-        $form = $this->createForm(Inscription::class);
+#[Route('/home', name: 'app_home')]
+public function form(Request $request): Response
+{
+// Correction : Utiliser InscriptionType si c'est le nom de votre formulaire
+$form = $this->createForm(InscriptionType::class);
 
-        $form->handleRequest($request);
+$form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            // Traite les données du formulaire ici
+if ($form->isSubmitted() && $form->isValid()) {
+// Traiter les données du formulaire ici
 
-            // Redirige ou fais autre chose
-        }
+// Par exemple, rediriger vers une autre page
+return $this->redirectToRoute('app_home');
+}
 
-        return $this->render('home.html.twig', [
-            'form' => $form->createView(), // Passe la vue du formulaire au template
-        ]);
-    }
+return $this->render('home.html.twig', [
+'form' => $form->createView(),
+]);
+}
 
-    public function index(): Response
-    {
-        return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
-        ]);
-    }
+#[Route('/home/index', name: 'app_home_index')] // Ajout de la route pour la méthode index
+public function index(): Response
+{
+return $this->render('home/index.html.twig', [
+'controller_name' => 'HomeController',
+]);
+}
 }
