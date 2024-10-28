@@ -10,36 +10,33 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
-    #[Route('/home', name: 'app_home')]
-    public function form(Request $request): Response
+    #[Route('/', name: 'app_home')]
+    public function index(): Response
     {
-        // Utilisation d'InscriptionType pour créer le formulaire
-        $form = $this->createForm(InscriptionType::class);
-
-        // Gestion de la requête du formulaire
-        $form->handleRequest($request);
-
-        // Si le formulaire est soumis et valide
-        if ($form->isSubmitted() && $form->isValid()) {
-            // Traitez les données du formulaire ici, par exemple :
-            // $data = $form->getData();
-
-            // Redirection après soumission
-            return $this->redirectToRoute('app_home');
-        }
-
-        // Rendu du template avec la vue du formulaire
-        return $this->render('home.html.twig', [
-            'form' => $form->createView(),
+        // Rendu du template pour la page d'accueil
+        return $this->render('home/index.html.twig', [
+            'controller_name' => 'HomeController',
         ]);
     }
 
-    #[Route('/home/index', name: 'app_home_index')]
-    public function index(): Response
+    #[Route('/home', name: 'app_home_form')]
+    public function form(Request $request): Response
     {
-        // Rendu du template pour la méthode index
-        return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
+        // Création du formulaire
+        $form = $this->createForm(InscriptionType::class);
+        $form->handleRequest($request);
+
+        // Vérification si le formulaire est soumis et valide
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Traitez les données du formulaire ici
+
+            // Redirection après soumission (optionnelle)
+            return $this->redirectToRoute('app_home');
+        }
+
+        // Rendu du formulaire
+        return $this->render('home/form.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
 }
